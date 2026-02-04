@@ -105,3 +105,4 @@ if st.session_state.play_video:
 
     with open("los_angeles.mp4", "rb") as video_file:
         st.video(video_file.read())
+
