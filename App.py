@@ -36,7 +36,6 @@ smile_cascade = cv2.CascadeClassifier(
 # -------------------- LOGIN BUTTON --------------------
 if not st.session_state.logged_in:
     if st.button("🔐 Login"):
-        st.session_state.show_camera = True
         if user_name==name and pw==p:
             st.session_state.show_camera = True
         else:
@@ -115,6 +114,7 @@ if st.session_state.play_video:
 
     with open("los_angeles.mp4", "rb") as video_file:
         st.video(video_file.read())
+
 
 
 
