@@ -2,6 +2,7 @@ import streamlit as st
 import cv2
 import numpy as np
 from PIL import Image
+import requests
 
 # -------------------- Page Config --------------------
 st.set_page_config(page_title="Smile Based Login", page_icon="😄")
@@ -115,8 +116,14 @@ if st.session_state.play_video:
     video_id = st.secrets["VIDEO_ID"]
     video_url = f"https://drive.google.com/uc?export=download&id={video_id}"
     
-    st.video(video_url)
-
+    response = requests.get(video_url)
+    
+    if response.status_code == 200:
+        st.video(response.content)
+    else:
+        st.error("Failed to load video.")
+    
+    
 
 
 
