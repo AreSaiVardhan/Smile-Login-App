@@ -3,6 +3,13 @@ import cv2
 import numpy as np
 from PIL import Image
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+user_name = os.getenv('USER_NAME')
+pw = os.getenv('PW')
+
 # -------------------- Page Config --------------------
 st.set_page_config(page_title="Smile Based Login", page_icon="😄")
 
@@ -31,6 +38,10 @@ smile_cascade = cv2.CascadeClassifier(
 if not st.session_state.logged_in:
     if st.button("🔐 Login"):
         st.session_state.show_camera = True
+        if user_name==name and pw==p:
+            st.session_state.show_camera = True
+        else:
+            st.warning('User Name or Password is invalid')
 
 # -------------------- CAMERA SECTION --------------------
 if st.session_state.show_camera and not st.session_state.logged_in:
@@ -105,4 +116,5 @@ if st.session_state.play_video:
 
     with open("los_angeles.mp4", "rb") as video_file:
         st.video(video_file.read())
+
 
