@@ -3,19 +3,18 @@ import cv2
 import numpy as np
 from PIL import Image
 
-import os
-from dotenv import load_dotenv
-load_dotenv()
-
-user_name = os.getenv('USER_NAME')
-pw = os.getenv('PW')
-
 # -------------------- Page Config --------------------
 st.set_page_config(page_title="Smile Based Login", page_icon="😄")
 
 st.title("😄 Smile Based Login System")
 st.write("Smile and capture your photo to login")
+st.write("Enter Your User name and password to login")
 
+user_name = st.secrets["USER_NAME"]
+pw = st.secrets["PW"]
+
+name = st.text_input("Enter User Name:")
+p = st.text_input("Enter Password:", type="password")
 # -------------------- Session State --------------------
 if "show_camera" not in st.session_state:
     st.session_state.show_camera = False
@@ -116,5 +115,6 @@ if st.session_state.play_video:
 
     with open("los_angeles.mp4", "rb") as video_file:
         st.video(video_file.read())
+
 
 
