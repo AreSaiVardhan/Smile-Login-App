@@ -112,8 +112,12 @@ if st.session_state.logged_in and not st.session_state.play_video:
 if st.session_state.play_video:
     st.subheader("🎬 Welcome Video")
 
-    with open("los_angeles.mp4", "rb") as video_file:
-        st.video(video_file.read())
+    video_id = st.secrets["VIDEO_ID"]
+    video_url = f"https://drive.google.com/uc?export=download&id={video_id}"
+    
+    st.video(video_url)
+
+
 
 
 
